@@ -50,6 +50,6 @@ ax1 = fig.add_axes([0.1,0.1,0.8,0.8])
 ax1.plot(dailycu)
 
 ax1.set_title("Cumulative Returns")
-plt.show();
+plt.show()
 
 
