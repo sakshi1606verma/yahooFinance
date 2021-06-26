@@ -2,19 +2,20 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-
+import numpy as np
 import time
+import matplotlib.pyplot as plt
 import pandas as pd
 
 
 def change(l):
-    ans= []
+    ans= np.array([])
     for i in range(len(l)):
         if i < len(l)-1:
             pchange = abs(((l[i] - l[i+1])/l[i]))*100
-            ans.append(pchange)
+            ans = np.append(ans,[pchange])
         if i == len(l)-1:
-            ans.append(None)    
+            ans = np.append(ans,0)    
    
     return ans
     
@@ -41,5 +42,14 @@ ans = change(lst)
 df['Adj PercentageChange'] = ans
  
 print(df)
+dailycu = (1+ans).cumprod()
+df['cumutative returns']=dailycu
+print(df)
+fig = plt.figure()
+ax1 = fig.add_axes([0.1,0.1,0.8,0.8])
+ax1.plot(dailycu)
+
+ax1.set_title("Cumulative Returns")
+plt.show();
 
 
