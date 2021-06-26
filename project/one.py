@@ -15,8 +15,7 @@ def change(l):
             ans.append(pchange)
         if i == len(l)-1:
             ans.append(None)    
-    print(ans)
-    print('lengthy:',len(ans))
+   
     return ans
     
 
